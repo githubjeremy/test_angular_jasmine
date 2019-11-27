@@ -1,0 +1,49 @@
+<!-- <div style="border: black solid 2px;">
+<h2>Tuto 1 | Un objet</h2>
+<h2 style="color: darkblue;">{{myhero.name | uppercase}} Détails :</h2>
+<div><span>id : </span>{{myhero.id}}</div>
+<div><span>name : </span>{{myhero.name}}</div>
+</div>
+
+<br>
+
+<div style="border: black solid 2px;">
+<h2>Tuto 2 | Two-way binding</h2>
+<h2 style="color: darkblue;">{{myhero.name | uppercase}} Détails :</h2>
+<h4>Ecrit le nouveau nom dans l'input</h4>
+<div><span>id : </span>{{myhero.id}}</div>
+<div><span>name : </span>
+    <label>
+        <input [(ngModel)]="myhero.name" placeholder="name"/>
+    </label>
+</div>
+</div>
+
+<br> -->
+
+<div>
+<h2>Tuto 3 | My Heroes from array</h2>
+<div>
+    <label>Hero name:
+      <input #heroName />
+    </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(heroName.value); heroName.value=''">
+      add
+    </button>
+</div>
+<ul class="heroes">
+    <!-- *ngFor créé une itération de la liste des heroes définis dans mock-heroes.ts -->
+    <!-- (click) les parentheses permettent d'écouter l'évènement click sur la balise li et execute l'expression onSelect(hero) de la methode onSelect() définis dans .ts -->
+    <!-- [class.selected] signifi que la class .selected sera ajouté à li si ce dernié à été définie avec son propre hero soit : [class.some-css-class]="some-condition" -->
+    <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
+        <a routerLink="/detail/{{hero.id}}">
+        <span class="badge">id : {{hero.id}}</span>name : {{hero.name}}
+        </a>
+        <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
+    </li>
+</ul>
+<br>
+<!-- la propriété du [hero] est defini par selectedHero et envoyé au template enfant détail -->
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+</div>
